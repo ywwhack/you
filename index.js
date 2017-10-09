@@ -43,14 +43,26 @@ function autoRun (update) {
 const obj = { message: 'world' }
 observe(obj)
 
-const handlebars = require('handlebars')
-const source = '<p>Hello, {{ message }}</p>'
-const template = handlebars.compile(source)
+const handlebars = require('handlebars/dist/handlebars.js')
+const originalCompile = handlebars.compile.bind(handlebars)
+function compile (source) {
+  const template = originalCompile(source)
+  return function reactivityTemplate (data, update) {
+    let result
+    autoRun(() => {
+      result = template(data)
+      update(result)
+    })
+  }
+}
 
-autoRun(() => {
-  console.log(template(obj))
-  // print '<p>Hello, world</p>'
+const source = '<p>Hello, {{ message }}</p>'
+
+const appDom = document.getElementById('app')
+compile(source)(obj, result => {
+  appDom.innerHTML = result
 })
 
-obj.message = 'you'
-// print '<p>Hello, you</p>'
+setTimeout(() => {
+  obj.message = 'you'
+}, 2000)
