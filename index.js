@@ -1,14 +1,18 @@
-import { observe, autoRun, compile } from './lib'
+import { observe, h, Component } from './lib'
 
 const obj = { message: 'world' }
 observe(obj)
 
-const source = '<p>Hello, {{ message }}</p>'
+class Hello extends Component {
+  render () {
+    return h('span', {}, [
+      h(`hello ${this.props.message}`)
+    ])
+  }
+}
 
 const appDom = document.getElementById('app')
-compile(source)(obj, result => {
-  appDom.innerHTML = result
-})
+appDom.appendChild(h(Hello, obj))
 
 setTimeout(() => {
   obj.message = 'you'
