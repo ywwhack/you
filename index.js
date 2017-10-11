@@ -5,9 +5,7 @@ observe(obj)
 
 class Hello extends Component {
   render () {
-    return h('span', {}, [
-      h(`hello ${this.props.message}`)
-    ])
+    return h('span', {}, `hello ${this.props.message}`)
   }
 }
 
