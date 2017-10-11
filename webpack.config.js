@@ -10,6 +10,11 @@ module.exports = {
   devServer: {
     contentBase: './dist'
   },
+  module: {
+    rules: [
+      { test: /.jsx?$/, loader: 'babel-loader' }
+    ]
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
