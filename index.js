@@ -6,19 +6,19 @@ const Hello = {
   },
   computed: {
     anotherMessage () {
-      return this.data.message + ' too'
+      return this.message + ' too'
     }
   },
   created () {
     setTimeout(() => {
-      this.data.message = 'you'
+      this.message = 'you'
     }, 2000)
   },
   render () {
     return (
       <div>
-        <p>Hello {this.data.message}</p>
-        <p>Hi {this.computed.anotherMessage}</p>
+        <p>Hello {this.message}</p>
+        <p>Hi {this.anotherMessage}</p>
       </div>
     )
   }
