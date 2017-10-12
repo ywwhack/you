@@ -1,19 +1,28 @@
 import { observe, h, Component } from './lib'
 
-const obj = { message: 'world' }
-
 const Hello = {
   data () {
-    return obj
+    return { message: 'world' }
+  },
+  computed: {
+    anotherMessage () {
+      return this.data.message + ' too'
+    }
+  },
+  created () {
+    setTimeout(() => {
+      this.data.message = 'you'
+    }, 2000)
   },
   render () {
-    return <div>Hello {this.data.message}</div>
+    return (
+      <div>
+        <p>Hello {this.data.message}</p>
+        <p>Hi {this.computed.anotherMessage}</p>
+      </div>
+    )
   }
 }
 
 const appDom = document.getElementById('app')
 appDom.appendChild(<Hello />)
-
-setTimeout(() => {
-  obj.message = 'you'
-}, 2000)
