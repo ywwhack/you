@@ -1,16 +1,18 @@
 import { observe, h, Component } from './lib'
 
 const obj = { message: 'world' }
-observe(obj)
 
-class Hello extends Component {
+const Hello = {
+  data () {
+    return obj
+  },
   render () {
-    return <div>Hello {this.props.message}</div>
+    return <div>Hello {this.data.message}</div>
   }
 }
 
 const appDom = document.getElementById('app')
-appDom.appendChild(h(Hello, obj))
+appDom.appendChild(<Hello />)
 
 setTimeout(() => {
   obj.message = 'you'
