@@ -9,6 +9,11 @@ const Hello = {
       return this.message + ' too'
     }
   },
+  watch: {
+    message (newValue) {
+      console.log(`message changed to ${newValue}`)
+    }
+  },
   created () {
     setTimeout(() => {
       this.message = 'you'
