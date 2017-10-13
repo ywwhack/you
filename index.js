@@ -1,4 +1,4 @@
-import { observe, h, Component } from './lib'
+import { h, Component, render } from './lib'
 
 const Hello = {
   data () {
@@ -29,5 +29,4 @@ const Hello = {
   }
 }
 
-const appDom = document.getElementById('app')
-appDom.appendChild(<Hello />)
+render(<Hello />, document.getElementById('app'))
