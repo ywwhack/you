@@ -25,12 +25,13 @@ class Hello extends Component {
 
   render () {
     return (
-      <div>
+      <div onClick={this.props.onClick}>
         <p>Hello {this.message}</p>
         <p>Hi {this.anotherMessage}</p>
+        <button onClick={() => console.log(this.message)}>触发事件</button>
       </div>
     )
   }
 }
 
-render(<Hello />, document.getElementById('app'))
+render(<Hello onClick={() => {console.log('父组件事件')}} />, document.getElementById('app'))
