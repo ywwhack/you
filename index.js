@@ -1,24 +1,28 @@
 import { h, Component, render } from './lib'
 
-const Hello = {
+class Hello extends Component {
   data () {
     return { message: 'world' }
-  },
-  computed: {
+  }
+
+  computed = {
     anotherMessage () {
       return this.message + ' too'
     }
-  },
-  watch: {
+  }
+
+  watch = {
     message (newValue) {
       console.log(`message changed to ${newValue}`)
     }
-  },
+  }
+
   created () {
     setTimeout(() => {
       this.message = 'you'
     }, 2000)
-  },
+  }
+
   render () {
     return (
       <div>
